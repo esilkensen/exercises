@@ -1,13 +1,17 @@
 function invertTree(root) {
-    var left = root.left;
-    var right = root.right;
-    if ('left' in root) {
+    if (root) {
+        var left = root.left;
+        var right = root.right;
         invertTree(left);
-        root.right = left;
-    }
-    if ('right' in root) {
         invertTree(right);
         root.left = right;
+        root.right = left;
+        if (root.left === undefined) {
+            delete root.left;
+        }
+        if (root.right === undefined) {
+            delete root.right;
+        }
     }
 }
 
